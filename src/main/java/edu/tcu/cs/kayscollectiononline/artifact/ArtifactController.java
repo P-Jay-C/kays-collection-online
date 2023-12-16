@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/api/v1/artifacts")
+@RequestMapping("${api.endpoint.base-url}/artifacts")
 public class ArtifactController {
 
     private final ArtifactService artifactService;
@@ -52,6 +52,7 @@ public class ArtifactController {
     @PostMapping
     public Result addArtifacts(@Valid @RequestBody ArtifactDto artifactDto){
         Artifact artifact = artifactDtoToArtifactConverter.convert(artifactDto);
+
         Artifact savedArtifact = artifactService.save(artifact);
 
         ArtifactDto savedArtifactDto = artifactToArtifactDtoConverter.convert(savedArtifact);

@@ -1,6 +1,5 @@
 package edu.tcu.cs.kayscollectiononline.system.exception;
 
-import edu.tcu.cs.kayscollectiononline.artifact.ArtifactNotFoundException;
 import edu.tcu.cs.kayscollectiononline.system.Result;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;
 import org.springframework.http.HttpStatus;
@@ -15,9 +14,9 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
-    @ExceptionHandler(ArtifactNotFoundException.class)
+    @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    Result handleArtifactNotFoundException(ArtifactNotFoundException ex){
+    Result handleObjectNotFoundException(ObjectNotFoundException ex){
         return  new Result(false, StatusCode.NOT_FOUND, ex.getMessage());
     }
 

@@ -2,6 +2,7 @@ package edu.tcu.cs.kayscollectiononline.artifact;
 
 import edu.tcu.cs.kayscollectiononline.artifact.utils.IdWorker;
 import edu.tcu.cs.kayscollectiononline.system.Result;
+import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class ArtifactService {
 
     public Artifact findById(String artifactId){
         return artifactRepository.findById(artifactId).orElseThrow(
-                () -> new ArtifactNotFoundException("Artifact not found with id: "+ artifactId)
+                () -> new ObjectNotFoundException("artifact",artifactId)
         );
     }
 
@@ -45,12 +46,12 @@ public class ArtifactService {
 
                             return this.artifactRepository.save(oldArtifact);
                         })
-                .orElseThrow(()-> new ArtifactNotFoundException("Artifact Not Found"));
+                .orElseThrow(()-> new ObjectNotFoundException("artifact",artifactId));
     }
 
     public void delete(String artifactId) {
         Artifact artifact = artifactRepository.findById(artifactId)
-                .orElseThrow(() -> new ArtifactNotFoundException("Artifact not found with id: " + artifactId));
+                .orElseThrow(() -> new ObjectNotFoundException("artifact",artifactId));
 
         artifactRepository.deleteById(artifactId);
     }
