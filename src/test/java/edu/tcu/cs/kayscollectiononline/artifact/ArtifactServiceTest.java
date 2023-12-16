@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.tcu.cs.kayscollectiononline.artifact.Dto.ArtifactDto;
 import edu.tcu.cs.kayscollectiononline.artifact.utils.IdWorker;
+import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
 import edu.tcu.cs.kayscollectiononline.wizard.Wizard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,11 +102,11 @@ class ArtifactServiceTest {
     void testFindByIdNotFound() {
         when(artifactRepository.findById(any(String.class))).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(ArtifactNotFoundException.class,() -> {
+        Exception exception = assertThrows(ObjectNotFoundException.class,() -> {
             Artifact returnArtifact = artifactService.findById("1234567");
         });
 
-        String expectedMessage = "Artifact not found";
+        String expectedMessage = "Could not find artifact";
         String actualMessage = exception.getMessage();
 
 
@@ -191,7 +192,7 @@ class ArtifactServiceTest {
 
         when(artifactRepository.findById("1250808601744904192")).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(ArtifactNotFoundException.class, () ->{
+        Exception exception = assertThrows(ObjectNotFoundException.class, () ->{
             artifactService.update("1250808601744904192", update);
         });
 
@@ -215,7 +216,6 @@ class ArtifactServiceTest {
         verify(artifactRepository, times(1)).deleteById(existingArtifactId);
     }
 
-
     @Test
     public void testDeleteArtifactNotFound() {
         // Given
@@ -223,7 +223,7 @@ class ArtifactServiceTest {
         when(artifactRepository.findById(nonExistentArtifactId)).thenReturn(Optional.empty());
 
         // When & Then
-        assertThrows(ArtifactNotFoundException.class, () -> {
+        assertThrows(ObjectNotFoundException.class, () -> {
             artifactService.delete(nonExistentArtifactId);
         });
 

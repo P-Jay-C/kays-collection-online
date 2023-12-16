@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/wizards")
+@RequestMapping("${api.endpoint.base-url}/wizards")
 public class WizardController {
 
     private final WizardService wizardService;
@@ -32,6 +32,8 @@ public class WizardController {
 
         return new Result(true, StatusCode.SUCCESS,"Find Success", wizardDto);
     }
+
+
 
     @GetMapping
     public Result findAllWizards(){
@@ -70,6 +72,7 @@ public class WizardController {
 
     @DeleteMapping("/{wizardId}")
     public Result deleteWizard(@PathVariable String wizardId){
+
         wizardService.delete(wizardId);
 
         return  new Result(true, StatusCode.SUCCESS,"Delete Success");

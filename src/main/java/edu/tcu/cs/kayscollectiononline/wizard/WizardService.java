@@ -1,8 +1,7 @@
 package edu.tcu.cs.kayscollectiononline.wizard;
 
-import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
-import edu.tcu.cs.kayscollectiononline.artifact.ArtifactNotFoundException;
 import edu.tcu.cs.kayscollectiononline.artifact.utils.IdWorker;
+import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class WizardService {
 
     public Wizard findById(Long wizardId){
         return  wizardRepository.findById(wizardId).orElseThrow(
-                () -> new WizardNotFoundException("User not found with id:" + wizardId)
+                () -> new ObjectNotFoundException("wizard",wizardId)
         );
     }
 
@@ -40,13 +39,15 @@ public class WizardService {
 
                     return this.wizardRepository.save(oldWizard);
                 })
-                .orElseThrow(()-> new WizardNotFoundException("Wizard not found with id: "+wizardId));
+                .orElseThrow(()-> new ObjectNotFoundException("wizard",wizardId));
         
     }
 
     public void delete(String wizardId) {
-        Wizard artifact = wizardRepository.findById(Long.valueOf(wizardId))
-                .orElseThrow(() -> new ArtifactNotFoundException("Artifact not found with id: " + wizardId));
+        Wizard wizard = wizardRepository.findById(Long.valueOf(wizardId))
+                .orElseThrow(() -> new ObjectNotFoundException("wizard",wizardId));
+
+        wizard.removeAllArtifacts();
 
         wizardRepository.deleteById(Long.valueOf(wizardId));
     }
