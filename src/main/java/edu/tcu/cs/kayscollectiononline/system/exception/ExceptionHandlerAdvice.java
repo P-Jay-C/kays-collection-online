@@ -3,6 +3,7 @@ package edu.tcu.cs.kayscollectiononline.system.exception;
 import edu.tcu.cs.kayscollectiononline.artifact.ArtifactNotFoundException;
 import edu.tcu.cs.kayscollectiononline.system.Result;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;
+import edu.tcu.cs.kayscollectiononline.wizard.WizardNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -21,6 +22,11 @@ public class ExceptionHandlerAdvice {
         return  new Result(false, StatusCode.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(WizardNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    Result handleWizardNotFoundException(ArtifactNotFoundException ex){
+        return  new Result(false, StatusCode.NOT_FOUND, ex.getMessage());
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody

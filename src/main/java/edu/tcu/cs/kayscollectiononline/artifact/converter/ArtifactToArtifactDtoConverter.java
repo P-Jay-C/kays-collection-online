@@ -1,16 +1,16 @@
 package edu.tcu.cs.kayscollectiononline.artifact.converter;
 import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
 import edu.tcu.cs.kayscollectiononline.artifact.Dto.ArtifactDto;
-import edu.tcu.cs.kayscollectiononline.wizard.converter.wizardToWizardDtoConverter;
+import edu.tcu.cs.kayscollectiononline.wizard.converter.WizardToWizardDtoConverter;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ArtifactToArtifactDtoConverter implements Converter<Artifact, ArtifactDto> {
 
-    private  final wizardToWizardDtoConverter wizardToWizardDtoConverter;
+    private  final WizardToWizardDtoConverter wizardToWizardDtoConverter;
 
-    public ArtifactToArtifactDtoConverter(edu.tcu.cs.kayscollectiononline.wizard.converter.wizardToWizardDtoConverter wizardToWizardDtoConverter) {
+    public ArtifactToArtifactDtoConverter(WizardToWizardDtoConverter wizardToWizardDtoConverter) {
         this.wizardToWizardDtoConverter = wizardToWizardDtoConverter;
     }
 
