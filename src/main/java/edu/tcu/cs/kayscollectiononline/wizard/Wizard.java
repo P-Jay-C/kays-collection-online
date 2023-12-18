@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Wizard implements Serializable {
@@ -53,7 +54,18 @@ public class Wizard implements Serializable {
     }
 
     public void removeAllArtifacts() {
-        artifacts.forEach(artifact -> artifact.setOwner(null));
-        artifacts = null;
+        if (artifacts != null) {
+            artifacts.forEach(artifact -> artifact.setOwner(null));
+            artifacts.clear();
+        }
     }
+
+
+    public void removeArtifact(Artifact artifact) {
+        if (artifact != null && artifacts.contains(artifact)) {
+            artifact.setOwner(null);
+            artifacts.remove(artifact);
+        }
+    }
+
 }
