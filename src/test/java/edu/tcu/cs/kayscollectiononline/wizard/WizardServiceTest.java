@@ -1,5 +1,7 @@
 package edu.tcu.cs.kayscollectiononline.wizard;
 
+import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
+import edu.tcu.cs.kayscollectiononline.artifact.ArtifactRepository;
 import edu.tcu.cs.kayscollectiononline.artifact.utils.IdWorker;
 import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.AfterEach;
@@ -15,9 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +29,9 @@ import static org.mockito.Mockito.when;
 class WizardServiceTest {
     @Mock
     WizardRepository wizardRepository;
+
+    @Mock
+    ArtifactRepository artifactRepository;
 
     @Mock
     IdWorker idWorker;
@@ -128,6 +135,82 @@ class WizardServiceTest {
         when(wizardRepository.findById(Long.valueOf(wizardId))).thenReturn(Optional.empty());
 
         assertThrows(ObjectNotFoundException.class, () -> wizardService.delete(wizardId));
+    }
+
+    @Test
+    void testAssignArtifactSuccess(){
+        // Given
+            Artifact a = new Artifact();
+            a.setId("123456");
+
+            Wizard w2 = new Wizard();
+            w2.setId(2L);
+            w2.setName("Harry Porter");
+            w2.addArtifact(a);
+
+            Wizard w3 = new Wizard();
+            w3.setId(3L);
+            w3.setName("Neville Longbottom");
+//            w3.addArtifact(a);
+
+
+            given(artifactRepository.findById("123456")).willReturn(Optional.of(a));
+            given(wizardRepository.findById(3L)).willReturn(Optional.of(w3));
+        // When
+
+        this.wizardService.assignArtifact(3L,"123456");
+
+        // Then
+
+        assertEquals(3,a.getOwner().getId());
+        assert(w3.getArtifacts()).contains(a);
+    }
+
+    @Test
+    void testAssignArtifactErrorWithNonExistentWizardId(){
+        // Given
+        Artifact a = new Artifact();
+        a.setId("123456");
+
+        Wizard w2 = new Wizard();
+        w2.setId(2L);
+        w2.setName("Harry Porter");
+        w2.addArtifact(a);
+
+        Wizard w3 = new Wizard();
+        w3.setId(3L);
+        w3.setName("Neville Longbottom");
+
+        given(wizardRepository.findById(3L)).willReturn(Optional.empty());
+
+        // When & Then
+        assertThrows(ObjectNotFoundException.class, () -> {
+            this.wizardService.assignArtifact(3L,"123456");
+        });
+    }
+
+    @Test
+    void testAssignArtifactErrorWithNonExistentArtifactId(){
+        // Given
+        Artifact a = new Artifact();
+        a.setId("123456");
+
+        Wizard w2 = new Wizard();
+        w2.setId(2L);
+        w2.setName("Harry Porter");
+        w2.addArtifact(a);
+
+        Wizard w3 = new Wizard();
+        w3.setId(3L);
+        w3.setName("Neville Longbottom");
+
+        given(artifactRepository.findById("654321")).willReturn(Optional.empty());
+        given(wizardRepository.findById(3L)).willReturn(Optional.of(w3));
+
+        // When & Then
+        assertThrows(ObjectNotFoundException.class, () -> {
+            this.wizardService.assignArtifact(3L,"654321");
+        });
     }
 
 
