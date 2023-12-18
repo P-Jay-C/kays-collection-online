@@ -1,5 +1,7 @@
 package edu.tcu.cs.kayscollectiononline.system;
 
+import edu.tcu.cs.kayscollectiononline.User.AppUser;
+import edu.tcu.cs.kayscollectiononline.User.UserRepository;
 import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
 import edu.tcu.cs.kayscollectiononline.artifact.ArtifactRepository;
 import edu.tcu.cs.kayscollectiononline.wizard.Wizard;
@@ -13,10 +15,12 @@ public class DBDataInitializer implements CommandLineRunner {
 
     private final ArtifactRepository artifactRepository;
     private final WizardRepository wizardRepository;
+    private final UserRepository userRepository;
 
-    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository) {
+    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -88,6 +92,32 @@ public class DBDataInitializer implements CommandLineRunner {
         wizardRepository.save(w3);
 
         artifactRepository.save(a6);
+
+        // Create Users
+        AppUser u1 = new AppUser();
+        u1.setId(1L);
+        u1.setUsername("john");
+        u1.setPassword("john@123");
+        u1.setEnabled(true);
+        u1.setRoles("admin user");
+
+        AppUser u2 = new AppUser();
+        u2.setId(2L);
+        u2.setUsername("eric");
+        u2.setPassword("eric@123");
+        u2.setEnabled(true);
+        u2.setRoles("user");
+
+        AppUser u3 = new AppUser();
+        u3.setId(3L);
+        u3.setUsername("tom");
+        u3.setPassword("tom@123");
+        u3.setEnabled(false);
+        u3.setRoles("user");
+
+        userRepository.save(u1);
+        userRepository.save(u2);
+        userRepository.save(u3);
 
     }
 }
