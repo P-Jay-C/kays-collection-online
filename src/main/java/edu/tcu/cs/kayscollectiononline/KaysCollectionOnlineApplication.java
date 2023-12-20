@@ -16,7 +16,5 @@ public class KaysCollectionOnlineApplication {
 	public IdWorker idWorker(){
 		return new IdWorker(1,1);
 	}
-
-
 }
 

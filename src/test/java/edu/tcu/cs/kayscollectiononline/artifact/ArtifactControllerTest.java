@@ -35,9 +35,8 @@ import static org.hamcrest.Matchers.containsString;
 
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 class ArtifactControllerTest {
-
     @Autowired
     MockMvc mockMvc;
     @MockBean
