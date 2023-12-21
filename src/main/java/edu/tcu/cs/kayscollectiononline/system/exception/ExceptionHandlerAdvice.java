@@ -79,8 +79,9 @@ public class ExceptionHandlerAdvice {
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    Result handleOtherException(AccessDeniedException ex){
-        return  new Result(false, StatusCode.INTERNAL_SERVER_ERROR, "An internal server occurred",ex.getMessage());
+    Result handleOtherException(Exception ex) {
+        return new Result(false, StatusCode.INTERNAL_SERVER_ERROR, "An internal server error occurred", ex.getMessage());
     }
+
 
 }
