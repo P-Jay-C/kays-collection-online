@@ -1,21 +1,12 @@
-# Enable H2 console
 spring:
-  h2:
-    console:
-      enabled: true
+  profiles:
+    active: dev
 
-  # Datasource Configuration
-  datasource:
-    url: jdbc:h2:mem:collections
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
-
-  # JPA Configuration
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 api:
   endpoint:
     base-url: /api/v1

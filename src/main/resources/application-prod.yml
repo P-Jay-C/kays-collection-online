@@ -1,0 +1,9 @@
+# Enable H2 console
+spring:
+  datasource:
+    url: #url of MySql in Azure
+    username: # admin username of mysql
+    password: # password
+  jpa:
+    hibernate:
+      ddl-auto: none
