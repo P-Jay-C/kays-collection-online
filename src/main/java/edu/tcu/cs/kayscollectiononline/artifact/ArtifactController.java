@@ -1,5 +1,4 @@
 package edu.tcu.cs.kayscollectiononline.artifact;
-
 import edu.tcu.cs.kayscollectiononline.artifact.dto.ArtifactDto;
 import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactDtoToArtifactConverter;
 import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactToArtifactDtoConverter;
