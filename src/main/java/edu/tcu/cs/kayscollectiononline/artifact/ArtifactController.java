@@ -4,6 +4,7 @@ import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactDtoToArtifactC
 import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactToArtifactDtoConverter;
 import edu.tcu.cs.kayscollectiononline.system.Result;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +18,23 @@ import java.util.stream.Collectors;
 public class ArtifactController {
 
     private final ArtifactService artifactService;
+    private final MeterRegistry meterRegistry;
 
     @Autowired
     private ArtifactToArtifactDtoConverter artifactToArtifactDtoConverter;
     @Autowired
     private ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
 
-    public ArtifactController(ArtifactService artifactService) {
+    public ArtifactController(ArtifactService artifactService, MeterRegistry meterRegistry) {
         this.artifactService = artifactService;
+        this.meterRegistry = meterRegistry;
     }
 
     @GetMapping("/{artifactId}")
     public Result findArtifactById(@PathVariable String artifactId){
          Artifact foundArtifact = this.artifactService.findById(artifactId);
 
+         meterRegistry.counter("artifact.id."+artifactId).increment();
         ArtifactDto artifactDto = artifactToArtifactDtoConverter.convert(foundArtifact);
 
          return new Result(true, StatusCode.SUCCESS,"Find One Success",artifactDto);
