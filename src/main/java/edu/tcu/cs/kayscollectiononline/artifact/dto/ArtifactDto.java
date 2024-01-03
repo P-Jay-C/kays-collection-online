@@ -1,4 +1,4 @@
-package edu.tcu.cs.kayscollectiononline.artifact.Dto;
+package edu.tcu.cs.kayscollectiononline.artifact.dto;
 
 import edu.tcu.cs.kayscollectiononline.wizard.Dto.WizardDto;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,6 +1,5 @@
-package edu.tcu.cs.kayscollectiononline.User;
+package edu.tcu.cs.kayscollectiononline.user;
 import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
-import edu.tcu.cs.kayscollectiononline.wizard.Wizard;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

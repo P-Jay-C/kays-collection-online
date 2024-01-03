@@ -4,24 +4,19 @@ import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
 import edu.tcu.cs.kayscollectiononline.artifact.ArtifactRepository;
 import edu.tcu.cs.kayscollectiononline.artifact.utils.IdWorker;
 import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;

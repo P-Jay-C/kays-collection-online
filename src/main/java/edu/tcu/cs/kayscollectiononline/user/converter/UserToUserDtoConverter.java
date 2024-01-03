@@ -1,7 +1,7 @@
-package edu.tcu.cs.kayscollectiononline.User.Converter;
+package edu.tcu.cs.kayscollectiononline.user.converter;
 
-import edu.tcu.cs.kayscollectiononline.User.AppUser;
-import edu.tcu.cs.kayscollectiononline.User.Dto.UserDto;
+import edu.tcu.cs.kayscollectiononline.user.AppUser;
+import edu.tcu.cs.kayscollectiononline.user.dto.UserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

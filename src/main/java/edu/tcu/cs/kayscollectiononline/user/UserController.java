@@ -1,10 +1,10 @@
-package edu.tcu.cs.kayscollectiononline.User;
+package edu.tcu.cs.kayscollectiononline.user;
 
-import edu.tcu.cs.kayscollectiononline.User.Converter.UserDtoToUserConverter;
-import edu.tcu.cs.kayscollectiononline.User.Converter.UserToUserDtoConverter;
+import edu.tcu.cs.kayscollectiononline.user.converter.UserDtoToUserConverter;
+import edu.tcu.cs.kayscollectiononline.user.converter.UserToUserDtoConverter;
 import edu.tcu.cs.kayscollectiononline.system.Result;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;
-import edu.tcu.cs.kayscollectiononline.User.Dto.UserDto;
+import edu.tcu.cs.kayscollectiononline.user.dto.UserDto;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 

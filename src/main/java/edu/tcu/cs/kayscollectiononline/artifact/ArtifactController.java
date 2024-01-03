@@ -1,6 +1,5 @@
 package edu.tcu.cs.kayscollectiononline.artifact;
-
-import edu.tcu.cs.kayscollectiononline.artifact.Dto.ArtifactDto;
+import edu.tcu.cs.kayscollectiononline.artifact.dto.ArtifactDto;
 import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactDtoToArtifactConverter;
 import edu.tcu.cs.kayscollectiononline.artifact.converter.ArtifactToArtifactDtoConverter;
 import edu.tcu.cs.kayscollectiononline.system.Result;
@@ -8,7 +7,6 @@ import edu.tcu.cs.kayscollectiononline.system.StatusCode;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
