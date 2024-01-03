@@ -1,4 +1,4 @@
-package edu.tcu.cs.kayscollectiononline.Security;
+package edu.tcu.cs.kayscollectiononline.security;
 
 import edu.tcu.cs.kayscollectiononline.system.Result;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;

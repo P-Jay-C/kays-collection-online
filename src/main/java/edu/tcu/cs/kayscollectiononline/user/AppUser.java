@@ -1,4 +1,4 @@
-package edu.tcu.cs.kayscollectiononline.User;
+package edu.tcu.cs.kayscollectiononline.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

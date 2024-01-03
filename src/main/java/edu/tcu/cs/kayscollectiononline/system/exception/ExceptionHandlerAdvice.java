@@ -47,8 +47,7 @@ public class ExceptionHandlerAdvice {
         String message = "Username or password is incorrect";
         if (ex instanceof UsernameNotFoundException) {
             message = "Username not found";
-        } else if (ex instanceof BadCredentialsException) {
-            BadCredentialsException bcEx = (BadCredentialsException) ex;
+        } else if (ex instanceof BadCredentialsException bcEx) {
             if (bcEx.getMessage().contains("Invalid Credentials") || bcEx.getMessage().contains("Bad Credentials")) {
                 message = "Username or password cannot be empty";
             }

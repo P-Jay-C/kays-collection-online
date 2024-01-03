@@ -1,13 +1,12 @@
 package edu.tcu.cs.kayscollectiononline.system;
 
-import edu.tcu.cs.kayscollectiononline.User.AppUser;
-import edu.tcu.cs.kayscollectiononline.User.UserRepository;
-import edu.tcu.cs.kayscollectiononline.User.UserService;
+import edu.tcu.cs.kayscollectiononline.user.AppUser;
+import edu.tcu.cs.kayscollectiononline.user.UserRepository;
+import edu.tcu.cs.kayscollectiononline.user.UserService;
 import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
 import edu.tcu.cs.kayscollectiononline.artifact.ArtifactRepository;
 import edu.tcu.cs.kayscollectiononline.wizard.Wizard;
 import edu.tcu.cs.kayscollectiononline.wizard.WizardRepository;
-import org.hibernate.annotations.Comment;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,13 +20,10 @@ public class DBDataInitializer implements CommandLineRunner {
     private final WizardRepository wizardRepository;
     private final UserService userService;
 
-    private final PasswordEncoder passwordEncoder;
-
     public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override

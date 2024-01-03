@@ -1,4 +1,4 @@
-package edu.tcu.cs.kayscollectiononline.User.Dto;
+package edu.tcu.cs.kayscollectiononline.user.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 

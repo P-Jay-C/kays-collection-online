@@ -1,9 +1,6 @@
 package edu.tcu.cs.kayscollectiononline.artifact;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.tcu.cs.kayscollectiononline.artifact.Dto.ArtifactDto;
-import edu.tcu.cs.kayscollectiononline.system.Result;
+import edu.tcu.cs.kayscollectiononline.artifact.dto.ArtifactDto;
 import edu.tcu.cs.kayscollectiononline.system.StatusCode;
 import edu.tcu.cs.kayscollectiononline.system.exception.ObjectNotFoundException;
 import org.hamcrest.Matchers;
@@ -20,19 +17,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.client.RequestMatcher;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.hamcrest.Matchers.containsString;
 
 
 @SpringBootTest

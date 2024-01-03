@@ -1,6 +1,4 @@
-package edu.tcu.cs.kayscollectiononline.User;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package edu.tcu.cs.kayscollectiononline.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,17 +8,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 
-public class MyUserPrincipal implements UserDetails {
-
-    private AppUser appUser;
-    public MyUserPrincipal(AppUser appUser) {
-        this.appUser = appUser;
-    }
+public record MyUserPrincipal(AppUser appUser) implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(StringUtils.tokenizeToStringArray(appUser.getRoles(), " "))
-                .map(role -> new SimpleGrantedAuthority("ROLE_"+role))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .toList();
     }
 
@@ -52,9 +45,5 @@ public class MyUserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return appUser.isEnabled();
-    }
-
-    public AppUser getAppUser() {
-        return appUser;
     }
 }

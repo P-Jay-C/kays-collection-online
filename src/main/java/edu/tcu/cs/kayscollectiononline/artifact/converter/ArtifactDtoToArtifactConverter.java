@@ -1,7 +1,7 @@
 package edu.tcu.cs.kayscollectiononline.artifact.converter;
 
 import edu.tcu.cs.kayscollectiononline.artifact.Artifact;
-import edu.tcu.cs.kayscollectiononline.artifact.Dto.ArtifactDto;
+import edu.tcu.cs.kayscollectiononline.artifact.dto.ArtifactDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

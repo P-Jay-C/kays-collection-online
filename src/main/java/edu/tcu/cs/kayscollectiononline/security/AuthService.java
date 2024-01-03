@@ -1,12 +1,11 @@
-package edu.tcu.cs.kayscollectiononline.Security;
+package edu.tcu.cs.kayscollectiononline.security;
 
-import edu.tcu.cs.kayscollectiononline.User.AppUser;
-import edu.tcu.cs.kayscollectiononline.User.Converter.UserToUserDtoConverter;
-import edu.tcu.cs.kayscollectiononline.User.Dto.UserDto;
-import edu.tcu.cs.kayscollectiononline.User.MyUserPrincipal;
+import edu.tcu.cs.kayscollectiononline.user.AppUser;
+import edu.tcu.cs.kayscollectiononline.user.converter.UserToUserDtoConverter;
+import edu.tcu.cs.kayscollectiononline.user.dto.UserDto;
+import edu.tcu.cs.kayscollectiononline.user.MyUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class AuthService {
 
         // Check if the principal is an instance of MyUserPrincipal
         if (authentication.getPrincipal() instanceof MyUserPrincipal principal) {
-            AppUser appUser = principal.getAppUser();
+            AppUser appUser = principal.appUser();
             UserDto userDto = userToUserDtoConverter.convert(appUser);
 
             loginResultMap.put("userInfo", userDto);
