@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -79,6 +80,13 @@ public class ExceptionHandlerAdvice {
         return  new Result(false, StatusCode.FORBIDDEN, "No permission",ex.getMessage());
     }
 
+    @ExceptionHandler(NoHandlerFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    Result handleNoHandlerFoundException(NoHandlerFoundException ex) {
+        return new Result(false, StatusCode.NOT_FOUND, "This API endpoint is not found.", ex.getMessage());
+    }
+
+
     /**
      * Fall back for any unhandled exceptions
      * @param ex
@@ -89,6 +97,8 @@ public class ExceptionHandlerAdvice {
     Result handleOtherException(Exception ex) {
         return new Result(false, StatusCode.INTERNAL_SERVER_ERROR, "An internal server error occurred", ex.getMessage());
     }
+
+
 
 
 }
