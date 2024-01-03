@@ -13,3 +13,36 @@ api:
 
 server:
   port: 80
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, env, beans, configprops, heapdump, httpexchanges, loggers, mappings,custom-beans
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+  info:
+    env:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+    java:
+      enabled: true
+    os:
+      enabled: true
+
+info:
+  app:
+    name: kays-collection-online
+    description: A web application that manages collection of supernatural artifacts owned by wizards
+    version: @project.version@
+    author: Jeremiah Azilaku
+    links:
+      github: https://github.com/P-Jay-C/kays-collection-online.git
