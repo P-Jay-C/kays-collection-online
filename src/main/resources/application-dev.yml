@@ -13,3 +13,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
+
+ai:
+  openai:
+    endpoint: ${AI_OPENAI_ENDPOINT:https://api.openai.com/v1/chat/completions} #  env variable  with default value
+    api-key: ${AI_OPENAI_API_KEY}
